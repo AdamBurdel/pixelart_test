@@ -94,9 +94,14 @@ function closeModal() {
 
 
 function result() {
-
+    //Ширина холста.
     var canvasWitdh = 404;
-    var deg = document.getElementById('rotate').getAttribute('deg');
+    //Высота и ширина пикселя
+    var pixelHeight = 101;
+    var pixelWidth = 101;
+
+
+    var degs = document.getElementById('rotate').getAttribute('deg');
     document.getElementById('rotate').setAttribute('deg' , '0');
 
     openModal();
@@ -110,10 +115,15 @@ function result() {
     var canvas = document.getElementById('result');
     var ctx = canvas.getContext('2d');
 
+    //Сбрасываем прошлые повороты.
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    //Вращение
     ctx.translate(canvasWitdh/2, canvasWitdh/2);
-    ctx.rotate(deg*Math.PI/180);
+    ctx.rotate(degs*Math.PI/180);
     ctx.translate(-canvasWitdh/2, -canvasWitdh/2);
 
+    //заливка
     ctx.fillStyle='#90C4B8';
     ctx.fillRect(0, 0, 404, 404);
     ctx.fillStyle='black';
@@ -125,16 +135,17 @@ function result() {
     var x = 0;
     var y = 0;
 
+    //Отрисовываем пиксели
     do {
         var pixels = document.querySelectorAll('.pixels-block');
             if (pixels[index].classList.contains('black')) {
-                ctx.fillRect(x, y, 101, 101);
+                ctx.fillRect(x, y, pixelWidth, pixelHeight);
                 if (x == 303) {
                     x = 0;
-                    y =y+101;
+                    y =y+pixelHeight;
                 }
                 else {
-                    x = x+101;
+                    x = x+pixelWidth;
                 }
             }
              else {
@@ -143,7 +154,7 @@ function result() {
                     y = y+101;
                 }
                 else {
-                    x = x+101;
+                    x = x+pixelWidth;
                 }
             }
         index++;
