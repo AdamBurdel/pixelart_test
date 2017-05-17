@@ -102,7 +102,6 @@ function result() {
 
 
     var degs = document.getElementById('rotate').getAttribute('deg');
-    document.getElementById('rotate').setAttribute('deg' , '0');
 
     openModal();
     //Количество закрашеных пикселей
