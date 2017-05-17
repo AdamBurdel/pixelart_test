@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width" charset="UTF-8">
+    <title>Pixel art</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body onload="timer();clicks();">
+<header>
+    <h1>Пиксель - Арт</h1>
+</header>
+<div class="container">
+    <div id="pixels">
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+        <div class="pixels-block"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="time">
+        <p>Время:</p>
+        <time id="timer"></time>
+    </div>
+    <div class="buttons">
+        <button onclick="rotate()">Повернуть</button>
+        <button onclick="result()">Результат</button>
+    </div>
+    <div id="overlay">
+        <div id="modal">
+            <div onclick="closeModal()" id="close"></div>
+            <canvas width="404" height="404" id="result"></canvas>
+            <p>Время: </p><p id="timeSpended"></p>
+            <p>Пикселей закрашено:</p> <p id="pixelsColored"></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
