@@ -38,8 +38,6 @@ var deg =0;
 
 function rotate() {
 
-
-
     var pixels = document.getElementById('pixels');
     var style = window.getComputedStyle(pixels);
     var transform = style.getPropertyValue('transform');
@@ -53,6 +51,8 @@ function rotate() {
     pixels.style.msTransform     = 'rotate('+deg+'deg)';
     pixels.style.oTransform      = 'rotate('+deg+'deg)';
     pixels.style.transform       = 'rotate('+deg+'deg)';
+
+    var attr = document.getElementById('rotate').setAttribute('deg', deg);
 }
 
 //click events
@@ -87,18 +87,33 @@ function closeModal() {
     var overlay = document.getElementById('overlay');
     overlay.style.opacity = '0';
     overlay.style.zIndex = '-1';
+
+    var canvas = document.getElementById('result');
+    var ctx = canvas.getContext('2d');
 }
 
 
 function result() {
+
+    var canvasWitdh = 404;
+    var deg = document.getElementById('rotate').getAttribute('deg');
+    document.getElementById('rotate').setAttribute('deg' , '0');
+
     openModal();
     //Количество закрашеных пикселей
     var allPixels = document.querySelectorAll('.black').length;
-    document.getElementById('pixelsColored').append(allPixels);
+    document.getElementById('pixelsColored').innerHTML = allPixels;
+    //Секунды
+    var time = document.getElementById('timer').innerHTML;
+    document.getElementById('timeSpended').innerHTML = time;
 
     var canvas = document.getElementById('result');
-    ctx = canvas.getContext('2d');
-    ctx.rotate(20*Math.PI/180);
+    var ctx = canvas.getContext('2d');
+
+    ctx.translate(canvasWitdh/2, canvasWitdh/2);
+    ctx.rotate(deg*Math.PI/180);
+    ctx.translate(-canvasWitdh/2, -canvasWitdh/2);
+
     ctx.fillStyle='#90C4B8';
     ctx.fillRect(0, 0, 404, 404);
     ctx.fillStyle='black';
@@ -133,7 +148,6 @@ function result() {
             }
         index++;
     }while (index<17);
-
 
 }
 
